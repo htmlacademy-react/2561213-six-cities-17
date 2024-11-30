@@ -1,7 +1,18 @@
-import OfferCard from '../../components/OfferCard';
-import { HotelStars, RoomType } from '../../enums';
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-function MainPage() {
+import { HotelRating, RoomType } from '../../enums';
+import { OfferCard } from '../../components';
+
+type TMainPage = {
+  placesAmount: number;
+  offersAmount: number;
+};
+
+function MainPage({
+  placesAmount,
+  offersAmount
+}: TMainPage): React.ReactElement {
   return (
     <div className='page page--gray page--main'>
       <header className='header'>
@@ -85,7 +96,9 @@ function MainPage() {
           <div className='cities__places-container container'>
             <section className='cities__places places'>
               <h2 className='visually-hidden'>Places</h2>
-              <b className='places__found'>312 places to stay in Amsterdam</b>
+              <b className='places__found'>
+                {placesAmount} places to stay in Amsterdam
+              </b>
               <form className='places__sorting' action='#' method='get'>
                 <span className='places__sorting-caption'>Sort by</span>
                 <span className='places__sorting-type' tabIndex={0}>
@@ -115,44 +128,60 @@ function MainPage() {
 
               <div className='cities__places-list places__list tabs__content'>
                 <OfferCard
-                  type={RoomType.APARTMENT}
+                  key={1}
+                  type={RoomType.Apartment}
                   price={120}
-                  rating={HotelStars.FOUR}
-                  text='Beautiful &amp; luxurious apartment at great location'
+                  rating={HotelRating.Four}
+                  text='Beautiful &amp; luxurious Apartment at great location'
                   imageSrc='markup/img/apartment-01.jpg'
                   isPremium
                 />
                 <OfferCard
-                  type={RoomType.ROOM}
+                  key={2}
+                  type={RoomType.Room}
                   price={80}
-                  rating={HotelStars.FOUR}
+                  rating={HotelRating.Four}
                   text='Wood and stone place'
                   imageSrc='markup/img/room.jpg'
                   isInBookmarks
                 />
                 <OfferCard
-                  type={RoomType.APARTMENT}
+                  key={3}
+                  type={RoomType.Apartment}
                   price={132}
-                  rating={HotelStars.FOUR}
+                  rating={HotelRating.Four}
                   text='Canal View Prinsengracht'
                   imageSrc='markup/img/apartment-02.jpg'
                 />
                 <OfferCard
-                  type={RoomType.APARTMENT}
+                  key={4}
+                  type={RoomType.Apartment}
                   price={180}
-                  rating={HotelStars.FIVE}
-                  text='Nice, cozy, warm big bed apartment'
+                  rating={HotelRating.Five}
+                  text='Nice, cozy, warm big bed Apartment'
                   imageSrc='markup/img/apartment-03.jpg'
                   isPremium
                 />
                 <OfferCard
-                  type={RoomType.ROOM}
+                  key={5}
+                  type={RoomType.Room}
                   price={80}
-                  rating={HotelStars.FOUR}
+                  rating={HotelRating.Four}
                   text='Wood and stone place'
                   imageSrc='markup/img/room.jpg'
                   isInBookmarks
                 />
+                {Array.from({ length: offersAmount }).map(() => (
+                  <OfferCard
+                    key={uuidv4()}
+                    type={RoomType.Apartment}
+                    price={120}
+                    rating={HotelRating.Four}
+                    text='Beautiful &amp; luxurious Apartment at great location'
+                    imageSrc='markup/img/apartment-01.jpg'
+                    isPremium
+                  />
+                ))}
               </div>
             </section>
             <div className='cities__right-section'>

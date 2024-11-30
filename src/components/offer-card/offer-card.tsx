@@ -1,12 +1,14 @@
-import OfferCardContent, { TOfferTypeContent } from './OfferCardContent';
-import OfferCardImage, { TOfferCardImage } from './OfferCardImage';
+import React from 'react';
+
+import OfferCardContent, { TOfferTypeContent } from './offer-card-content';
+import OfferCardImage, { TOfferCardImage } from './offer-card-image';
 
 type TOfferCard = {
   isPremium?: boolean;
 } & TOfferTypeContent &
   TOfferCardImage;
 
-function OfferCard(props: TOfferCard) {
+function OfferCard(props: TOfferCard): React.ReactElement {
   return (
     <article className='cities__card place-card'>
       {props.isPremium && (
@@ -14,7 +16,12 @@ function OfferCard(props: TOfferCard) {
           <span>Premium</span>
         </div>
       )}
-      <OfferCardImage imageSrc={props.imageSrc} imageAlt={props.imageAlt} />
+      <OfferCardImage
+        imageSrc={props.imageSrc}
+        imageAlt={props.imageAlt}
+        imageHeight={props.imageHeight}
+        imageWidth={props.imageWidth}
+      />
       <OfferCardContent
         text={props.text}
         price={props.price}

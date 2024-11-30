@@ -1,2 +1,2 @@
-export * from './HotelStars';
-export * from './RoomType';
+export * from './hotel-rating';
+export * from './room-type';
