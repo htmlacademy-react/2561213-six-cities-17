@@ -8,15 +8,33 @@ import { Header } from '../../layouts';
 type TMainPage = {
   placesAmount: number;
   offersAmount: number;
+  hasData?: boolean;
 };
+
+function EmptyMainPage() {
+  return (
+    <div className='cities__places-container cities__places-container--empty container'>
+      <section className='cities__no-places'>
+        <div className='cities__status-wrapper tabs__content'>
+          <b className='cities__status'>No places to stay available</b>
+          <p className='cities__status-description'>
+            We could not find any property available at the moment in Dusseldorf
+          </p>
+        </div>
+      </section>
+      <div className='cities__right-section'></div>
+    </div>
+  );
+}
 
 function MainPage({
   placesAmount,
-  offersAmount
+  offersAmount,
+  hasData
 }: TMainPage): React.ReactElement {
   return (
     <div className='page page--gray page--main'>
-      <Header />
+      <Header hasData={hasData} />
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
@@ -57,87 +75,43 @@ function MainPage({
           </section>
         </div>
         <div className='cities'>
-          <div className='cities__places-container container'>
-            <section className='cities__places places'>
-              <h2 className='visually-hidden'>Places</h2>
-              <b className='places__found'>
-                {placesAmount} places to stay in Amsterdam
-              </b>
-              <form className='places__sorting' action='#' method='get'>
-                <span className='places__sorting-caption'>Sort by</span>
-                <span className='places__sorting-type' tabIndex={0}>
-                  Popular
-                  <svg className='places__sorting-arrow' width='7' height='4'>
-                    <use xlinkHref='#icon-arrow-select'></use>
-                  </svg>
-                </span>
-                <ul className='places__options places__options--custom places__options--opened'>
-                  <li
-                    className='places__option places__option--active'
-                    tabIndex={0}
-                  >
+          {hasData ? (
+            <div className='cities__places-container container'>
+              <section className='cities__places places'>
+                <h2 className='visually-hidden'>Places</h2>
+                <b className='places__found'>
+                  {placesAmount} places to stay in Amsterdam
+                </b>
+                <form className='places__sorting' action='#' method='get'>
+                  <span className='places__sorting-caption'>Sort by</span>
+                  <span className='places__sorting-type' tabIndex={0}>
                     Popular
-                  </li>
-                  <li className='places__option' tabIndex={0}>
-                    Price: low to high
-                  </li>
-                  <li className='places__option' tabIndex={0}>
-                    Price: high to low
-                  </li>
-                  <li className='places__option' tabIndex={0}>
-                    Top-rated first
-                  </li>
-                </ul>
-              </form>
+                    <svg className='places__sorting-arrow' width='7' height='4'>
+                      <use xlinkHref='#icon-arrow-select'></use>
+                    </svg>
+                  </span>
+                  <ul className='places__options places__options--custom places__options--opened'>
+                    <li
+                      className='places__option places__option--active'
+                      tabIndex={0}
+                    >
+                      Popular
+                    </li>
+                    <li className='places__option' tabIndex={0}>
+                      Price: low to high
+                    </li>
+                    <li className='places__option' tabIndex={0}>
+                      Price: high to low
+                    </li>
+                    <li className='places__option' tabIndex={0}>
+                      Top-rated first
+                    </li>
+                  </ul>
+                </form>
 
-              <div className='cities__places-list places__list tabs__content'>
-                <OfferCard
-                  key={1}
-                  type={RoomType.Apartment}
-                  price={120}
-                  rating={HotelRating.Four}
-                  text='Beautiful &amp; luxurious Apartment at great location'
-                  imageSrc='markup/img/apartment-01.jpg'
-                  isPremium
-                />
-                <OfferCard
-                  key={2}
-                  type={RoomType.Room}
-                  price={80}
-                  rating={HotelRating.Four}
-                  text='Wood and stone place'
-                  imageSrc='markup/img/room.jpg'
-                  isInBookmarks
-                />
-                <OfferCard
-                  key={3}
-                  type={RoomType.Apartment}
-                  price={132}
-                  rating={HotelRating.Four}
-                  text='Canal View Prinsengracht'
-                  imageSrc='markup/img/apartment-02.jpg'
-                />
-                <OfferCard
-                  key={4}
-                  type={RoomType.Apartment}
-                  price={180}
-                  rating={HotelRating.Five}
-                  text='Nice, cozy, warm big bed Apartment'
-                  imageSrc='markup/img/apartment-03.jpg'
-                  isPremium
-                />
-                <OfferCard
-                  key={5}
-                  type={RoomType.Room}
-                  price={80}
-                  rating={HotelRating.Four}
-                  text='Wood and stone place'
-                  imageSrc='markup/img/room.jpg'
-                  isInBookmarks
-                />
-                {Array.from({ length: offersAmount }).map(() => (
+                <div className='cities__places-list places__list tabs__content'>
                   <OfferCard
-                    key={uuidv4()}
+                    key={1}
                     type={RoomType.Apartment}
                     price={120}
                     rating={HotelRating.Four}
@@ -145,13 +119,61 @@ function MainPage({
                     imageSrc='markup/img/apartment-01.jpg'
                     isPremium
                   />
-                ))}
+                  <OfferCard
+                    key={2}
+                    type={RoomType.Room}
+                    price={80}
+                    rating={HotelRating.Four}
+                    text='Wood and stone place'
+                    imageSrc='markup/img/room.jpg'
+                    isInBookmarks
+                  />
+                  <OfferCard
+                    key={3}
+                    type={RoomType.Apartment}
+                    price={132}
+                    rating={HotelRating.Four}
+                    text='Canal View Prinsengracht'
+                    imageSrc='markup/img/apartment-02.jpg'
+                  />
+                  <OfferCard
+                    key={4}
+                    type={RoomType.Apartment}
+                    price={180}
+                    rating={HotelRating.Five}
+                    text='Nice, cozy, warm big bed Apartment'
+                    imageSrc='markup/img/apartment-03.jpg'
+                    isPremium
+                  />
+                  <OfferCard
+                    key={5}
+                    type={RoomType.Room}
+                    price={80}
+                    rating={HotelRating.Four}
+                    text='Wood and stone place'
+                    imageSrc='markup/img/room.jpg'
+                    isInBookmarks
+                  />
+                  {Array.from({ length: offersAmount }).map(() => (
+                    <OfferCard
+                      key={uuidv4()}
+                      type={RoomType.Apartment}
+                      price={120}
+                      rating={HotelRating.Four}
+                      text='Beautiful &amp; luxurious Apartment at great location'
+                      imageSrc='markup/img/apartment-01.jpg'
+                      isPremium
+                    />
+                  ))}
+                </div>
+              </section>
+              <div className='cities__right-section'>
+                <section className='cities__map map'></section>
               </div>
-            </section>
-            <div className='cities__right-section'>
-              <section className='cities__map map'></section>
             </div>
-          </div>
+          ) : (
+            <EmptyMainPage />
+          )}
         </div>
       </main>
     </div>

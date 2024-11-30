@@ -4,10 +4,14 @@ import { HotelRating, RoomType } from '../../enums';
 import { OfferCard } from '../../components';
 import { Header } from '../../layouts';
 
-function OfferPage(): React.ReactElement {
+type TOfferPage = {
+  hasData?: boolean;
+};
+
+function OfferPage({ hasData }: TOfferPage): React.ReactElement {
   return (
     <div className='page'>
-      <Header />
+      <Header hasData={hasData} />
 
       <main className='page__main page__main--offer'>
         <section className='offer'>

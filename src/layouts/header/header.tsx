@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Header(): React.ReactElement {
+type THeader = {
+  hasData?: boolean;
+};
+
+function Header({ hasData }: THeader): React.ReactElement {
   return (
     <header className='header'>
       <div className='container'>
@@ -24,17 +28,25 @@ function Header(): React.ReactElement {
                   href='#'
                 >
                   <div className='header__avatar-wrapper user__avatar-wrapper'></div>
-                  <span className='header__user-name user__name'>
-                    Oliver.conner@gmail.com
-                  </span>
-                  <span className='header__favorite-count'>3</span>
+                  {hasData ? (
+                    <>
+                      <span className='header__user-name user__name'>
+                        Oliver.conner@gmail.com
+                      </span>
+                      <span className='header__favorite-count'>3</span>
+                    </>
+                  ) : (
+                    <span className='header__login'>Sign in</span>
+                  )}
                 </a>
               </li>
-              <li className='header__nav-item'>
-                <a className='header__nav-link' href='#'>
-                  <span className='header__signout'>Sign out</span>
-                </a>
-              </li>
+              {hasData && (
+                <li className='header__nav-item'>
+                  <a className='header__nav-link' href='#'>
+                    <span className='header__signout'>Sign out</span>
+                  </a>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
