@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Арсений Зелениченко](https://up.htmlacademy.ru/react/17/user/2561213).
-* Наставник: `Неизвестно`.
+* Студент: [Arseniy Zelenichenko](https://up.htmlacademy.ru/react/17/user/2561213).
+* Наставник: [Vasily Petrukhin](https://htmlacademy.ru/profile/id1528403).
 
 ---
 
