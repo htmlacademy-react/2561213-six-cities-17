@@ -1,2 +1,6 @@
+import { createBrowserRouter } from 'react-router-dom';
+import { routes } from './routes';
+
 export * from './route';
-export { default as PrivateRoute } from './private-route';
+
+export const router = createBrowserRouter(routes);
