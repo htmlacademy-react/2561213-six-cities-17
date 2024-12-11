@@ -1,9 +1,9 @@
 import React from 'react';
-
-import { MainPage } from '../../pages';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '../../router';
 
 function App(): React.ReactElement {
-  return <MainPage placesAmount={312} offersAmount={5} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
