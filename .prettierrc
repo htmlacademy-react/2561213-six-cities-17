@@ -14,5 +14,5 @@
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "css",
   "quoteProps": "as-needed",
-  "printWidth": 80
+  "printWidth": 120
 }
