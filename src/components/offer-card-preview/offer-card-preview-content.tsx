@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { HotelRating, RoomType } from '../../../enums';
+import { HotelRating, RoomType } from '../../enums';
 
-export type TOfferTypeContent = {
+export type TOfferCardPreviewContent = {
   isInBookmarks?: boolean;
   price: number;
   rating: HotelRating;
@@ -10,13 +10,13 @@ export type TOfferTypeContent = {
   type: RoomType;
 };
 
-function OfferCardContent({
+function OfferCardPreviewContent({
   isInBookmarks,
   price,
   rating,
   text,
   type
-}: TOfferTypeContent): React.ReactElement {
+}: TOfferCardPreviewContent): React.ReactElement {
   return (
     <div className='place-card__info'>
       <div className='place-card__price-wrapper'>
@@ -53,4 +53,4 @@ function OfferCardContent({
   );
 }
 
-export default OfferCardContent;
+export default OfferCardPreviewContent;

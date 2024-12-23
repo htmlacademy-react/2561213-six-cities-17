@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { HotelRating, RoomType } from '../../enums';
-import { OfferCard } from '../../components';
+import { OfferCard, OfferCardPreview } from '../../components';
 import { Header } from '../../layouts';
 
 type TOfferPage = {
@@ -304,7 +304,7 @@ function OfferPage({ hasData }: TOfferPage): React.ReactElement {
               Other places in the neighbourhood
             </h2>
             <div className='near-places__list places__list'>
-              <OfferCard
+              <OfferCardPreview
                 key={1}
                 price={80}
                 rating={HotelRating.Four}
@@ -313,7 +313,7 @@ function OfferPage({ hasData }: TOfferPage): React.ReactElement {
                 imageSrc='markup/img/room.jpg'
                 isInBookmarks
               />
-              <OfferCard
+              <OfferCardPreview
                 key={2}
                 price={132}
                 rating={HotelRating.Four}
@@ -321,7 +321,7 @@ function OfferPage({ hasData }: TOfferPage): React.ReactElement {
                 type={RoomType.Apartment}
                 imageSrc='markup/img/apartment-02.jpg'
               />
-              <OfferCard
+              <OfferCardPreview
                 key={3}
                 price={180}
                 rating={HotelRating.Five}

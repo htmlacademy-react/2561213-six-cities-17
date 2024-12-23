@@ -1,18 +1,18 @@
 import React from 'react';
 
-export type TOfferCardImage = {
+export type TOfferCardPreviewImage = {
   imageAlt?: string;
   imageSrc: string;
   imageHeight?: number;
   imageWidth?: number;
 };
 
-function OfferCardImage({
+function OfferCardPreviewImage({
   imageAlt = 'Place image',
   imageSrc,
   imageHeight = 200,
   imageWidth = 260
-}: TOfferCardImage): React.ReactElement {
+}: TOfferCardPreviewImage): React.ReactElement {
   return (
     <div className='cities__image-wrapper place-card__image-wrapper'>
       <a href='#'>
@@ -28,4 +28,4 @@ function OfferCardImage({
   );
 }
 
-export default OfferCardImage;
+export default OfferCardPreviewImage;

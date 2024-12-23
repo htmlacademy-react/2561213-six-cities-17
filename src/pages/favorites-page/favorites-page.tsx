@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { HotelRating, RoomType } from '../../enums';
-import { OfferCard } from '../../components';
+import { OfferCardPreview } from '../../components';
 import { Header } from '../../layouts';
 
 type TFavoritesPage = {
@@ -44,7 +44,7 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
                     </div>
                   </div>
                   <div className='favorites__places'>
-                    <OfferCard
+                    <OfferCardPreview
                       key={1}
                       imageSrc='markup/img/apartment-small-03.jpg'
                       price={180}
@@ -54,7 +54,7 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
                       isPremium
                       isInBookmarks
                     />
-                    <OfferCard
+                    <OfferCardPreview
                       key={2}
                       imageSrc='markup/img/room-small.jpg'
                       imageHeight={150}
@@ -77,7 +77,7 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
                     </div>
                   </div>
                   <div className='favorites__places'>
-                    <OfferCard
+                    <OfferCardPreview
                       key={3}
                       imageSrc='markup/img/apartment-small-04.jpg'
                       imageHeight={150}

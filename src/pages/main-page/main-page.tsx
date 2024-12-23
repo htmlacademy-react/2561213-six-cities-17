@@ -2,7 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { HotelRating, RoomType } from '../../enums';
-import { OfferCard } from '../../components';
+import { OfferCardPreview } from '../../components';
 import { Header } from '../../layouts';
 
 type TMainPage = {
@@ -110,7 +110,7 @@ function MainPage({
                 </form>
 
                 <div className='cities__places-list places__list tabs__content'>
-                  <OfferCard
+                  <OfferCardPreview
                     key={1}
                     type={RoomType.Apartment}
                     price={120}
@@ -119,7 +119,7 @@ function MainPage({
                     imageSrc='markup/img/apartment-01.jpg'
                     isPremium
                   />
-                  <OfferCard
+                  <OfferCardPreview
                     key={2}
                     type={RoomType.Room}
                     price={80}
@@ -128,7 +128,7 @@ function MainPage({
                     imageSrc='markup/img/room.jpg'
                     isInBookmarks
                   />
-                  <OfferCard
+                  <OfferCardPreview
                     key={3}
                     type={RoomType.Apartment}
                     price={132}
@@ -136,7 +136,7 @@ function MainPage({
                     text='Canal View Prinsengracht'
                     imageSrc='markup/img/apartment-02.jpg'
                   />
-                  <OfferCard
+                  <OfferCardPreview
                     key={4}
                     type={RoomType.Apartment}
                     price={180}
@@ -145,7 +145,7 @@ function MainPage({
                     imageSrc='markup/img/apartment-03.jpg'
                     isPremium
                   />
-                  <OfferCard
+                  <OfferCardPreview
                     key={5}
                     type={RoomType.Room}
                     price={80}
@@ -155,7 +155,7 @@ function MainPage({
                     isInBookmarks
                   />
                   {Array.from({ length: offersAmount }).map(() => (
-                    <OfferCard
+                    <OfferCardPreview
                       key={uuidv4()}
                       type={RoomType.Apartment}
                       price={120}
