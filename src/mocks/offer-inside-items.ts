@@ -1,7 +1,10 @@
+import { TOfferCardContentInsideItem } from '../components/offer-card';
+
+
 /**
  * Mocked offer inside features
  */
-export const offerInsideItems = [
+export const offerInsideItems: TOfferCardContentInsideItem[] = [
   { id: 1, text: 'Wi-Fi' },
   { id: 2, text: 'Washing machine' },
   { id: 3, text: 'Towels' },
@@ -10,6 +13,8 @@ export const offerInsideItems = [
   { id: 6, text: 'Baby seat' },
   { id: 7, text: 'Kitchen' },
   { id: 8, text: 'Dishwasher' },
-  { id: 9, text: 'Cabel TV' },
-  { id: 10, text: 'Fridge' }
+  { id: 9, text: 'Cable TV' },
+  { id: 10, text: 'Fridge' },
+  { id: 11, text: 'Air conditioning' },
+  { id: 12, text: 'Parking' }
 ];

@@ -3,23 +3,24 @@ import React from 'react';
 import { HotelRating, RoomType } from '../../enums';
 import { OfferCard, OfferCardPreview } from '../../components';
 import { Header } from '../../layouts';
+import { offers } from '../../mocks';
 
 type TOfferPage = {
   hasData?: boolean;
 };
 
 function OfferPage({ hasData }: TOfferPage): React.ReactElement {
+  const offerData = offers[0];
+
   return (
     <div className='page'>
       <Header hasData={hasData} />
 
       <main className='page__main page__main--offer'>
-        <OfferCard />
+        <OfferCard {...offerData} />
         <div className='container'>
           <section className='near-places places'>
-            <h2 className='near-places__title'>
-              Other places in the neighbourhood
-            </h2>
+            <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
               <OfferCardPreview
                 key={1}
