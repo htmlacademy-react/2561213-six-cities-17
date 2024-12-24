@@ -1,11 +1,10 @@
-import { HotelRating } from '../../../enums';
+import { HotelRating, RoomType } from '../../../enums';
 import { OfferCardContentInsideItems, TOfferCardContentInsideItem } from './offer-card-content-inside-items';
 import { OfferCardContentFeatures, TOfferCardContentFeature } from './offer-card-content-features';
 import { OfferCardContentHost, TOfferCardContentHost } from './offer-card-content-host';
 import { OfferCardContentReviews, TOfferCardContentReview } from './offer-card-content-reviews';
 
 export type TOfferCardContent = {
-  id: number;
   isPremium: boolean;
   name: string;
   stars: HotelRating;
@@ -15,6 +14,7 @@ export type TOfferCardContent = {
   insideItems: TOfferCardContentInsideItem[];
   host: TOfferCardContentHost;
   reviews: TOfferCardContentReview[];
+  roomType: RoomType;
 };
 
 function OfferCardContent(props: TOfferCardContent) {

@@ -1,14 +1,22 @@
 import React from 'react';
 
-import OfferCardGallery from './offer-card-gallery';
-import OfferCardContent from './offer-card-content';
+import { OfferCardContent, TOfferCardContent } from './offer-card-content';
+import OfferCardGallery, { TOfferCardImage } from './offer-card-gallery';
 import OfferCardMap from './offer-card-map';
 
-function OfferCard(): React.ReactElement {
+export type TOfferCard = {
+  id: number;
+  images: TOfferCardImage[];
+  isInBookmarks?: boolean;
+} & TOfferCardContent;
+
+function OfferCard(data: TOfferCard): React.ReactElement {
+  const { images } = data;
+
   return (
     <section className='offer'>
-      <OfferCardGallery images={[]} />
-      <OfferCardContent />
+      <OfferCardGallery images={images} />
+      <OfferCardContent {...data} />
       <OfferCardMap />
     </section>
   );
