@@ -1,1 +1,1 @@
-export { default } from './offer-list';
+export { default as OfferList } from './offer-list';

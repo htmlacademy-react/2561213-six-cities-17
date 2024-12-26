@@ -7,9 +7,9 @@ type TErrorPageProps = {
   message?: string;
 };
 
-function ErrorPage({
-  message = 'При загрузке страницы произошла ошибка. Повторите попытку позднее.'
-}: TErrorPageProps): React.ReactElement {
+function ErrorPage(props: TErrorPageProps): React.ReactElement {
+  const { message = 'При загрузке страницы произошла ошибка. Повторите попытку позднее.' } = props;
+
   return (
     <>
       <h1>Упс!</h1>

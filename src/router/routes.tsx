@@ -16,11 +16,11 @@ export const routes = createRoutesFromElements(
   <Route errorElement={<ErrorPage />}>
     <Route
       path={RouteEnum.Main}
-      element={<MainPage placesAmount={312} offersAmount={5} />}
+      element={<MainPage placesAmount={312} hasData />}
     />
     <Route path={RouteEnum.Login} element={<LoginPage />} />
-    <Route element={<PrivateRoute authorizationStatus={Status.NoAuth} />}>
-      <Route path={RouteEnum.Favorites} element={<FavoritesPage />} />
+    <Route element={<PrivateRoute authorizationStatus={Status.Auth} />}>
+      <Route path={RouteEnum.Favorites} element={<FavoritesPage hasData/>} />
     </Route>
     <Route path={RouteEnum.Offer} element={<OfferPage />} />
     <Route

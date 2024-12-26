@@ -1,6 +1,7 @@
 import React from 'react';
 import { HotelRating, RoomType } from '../../enums';
 import { OfferCardPreview } from '../index';
+import { TOfferCardPreviewImage } from '../offer-card-preview';
 
 export type TOfferList = {
   offers: TOfferListItem[];
@@ -8,26 +9,28 @@ export type TOfferList = {
 
 export type TOfferListItem = {
   id: number;
-  type: RoomType;
+  roomType: RoomType;
   price: number;
-  rating: HotelRating;
-  text: string;
-  imageSrc: string;
+  stars: HotelRating;
+  name: string;
+  previewImage: TOfferCardPreviewImage;
   isPremium?: boolean;
   isInBookmarks?: boolean;
 };
 
-export function OfferList({ offers }: TOfferList): React.ReactElement {
+function OfferList({ offers }: TOfferList): React.ReactElement {
   return (
-    <div className='cities__places-list places__list tabs__content'>
+    <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <OfferCardPreview
           key={offer.id}
-          type={offer.type}
+          id={offer.id}
+          roomType={offer.roomType}
           price={offer.price}
-          rating={offer.rating}
-          text={offer.text}
-          imageSrc={offer.imageSrc}
+          stars={offer.stars}
+          name={offer.name}
+          imageSrc={offer.previewImage.imageSrc}
+          imageAlt={offer.previewImage.imageAlt}
           isPremium={offer.isPremium}
           isInBookmarks={offer.isInBookmarks}
         />
@@ -35,3 +38,5 @@ export function OfferList({ offers }: TOfferList): React.ReactElement {
     </div>
   );
 }
+
+export default OfferList;
