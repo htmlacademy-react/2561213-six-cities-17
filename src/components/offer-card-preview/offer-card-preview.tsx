@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom'; // Импортируем Link
 
-import OfferCardPreviewContent, { TOfferCardPreviewContent } from './offer-card-preview-content';
-import OfferCardPreviewImage, { TOfferCardPreviewImage } from './offer-card-preview-image';
+import OfferCardPreviewContent, {
+  TOfferCardPreviewContent
+} from './offer-card-preview-content';
+import OfferCardPreviewImage, {
+  TOfferCardPreviewImage
+} from './offer-card-preview-image';
 
 export type TOfferCardPreview = {
   id: number;
@@ -30,8 +34,8 @@ function OfferCardPreview(props: TOfferCardPreview): React.ReactElement {
   };
 
   const cardClass = cn('place-card', {
-    favorites__card: isFavorite,
-    cities__card: !isFavorite
+    'favorites__card': isFavorite,
+    'cities__card': !isFavorite
   });
 
   const imageWrapperClass = cn('place-card__image-wrapper', {
@@ -50,16 +54,16 @@ function OfferCardPreview(props: TOfferCardPreview): React.ReactElement {
       onMouseLeave={handleMouseLeave}
       style={{ cursor: 'pointer' }}
     >
+      {props.isPremium && (
+        <div className='place-card__mark'>
+          <span>Premium</span>
+        </div>
+      )}
       <Link
         to={`/offer/${props.id}`}
         onClick={() => window.scrollTo(0, 0)}
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
-        {props.isPremium && (
-          <div className='place-card__mark'>
-            <span>Premium</span>
-          </div>
-        )}
         <div className={imageWrapperClass}>
           <OfferCardPreviewImage {...props} />
         </div>

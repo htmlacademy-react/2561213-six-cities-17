@@ -9,8 +9,16 @@ export type TOfferCardPreviewImage = {
   isFavorite?: boolean;
 };
 
-function OfferCardPreviewImage(props: TOfferCardPreviewImage): React.ReactElement {
-  const { imageAlt = 'Place image', imageSrc, imageHeight = 200, imageWidth = 260, isFavorite } = props;
+function OfferCardPreviewImage(
+  props: TOfferCardPreviewImage
+): React.ReactElement {
+  const {
+    imageAlt = 'Place image',
+    imageSrc,
+    imageHeight = 200,
+    imageWidth = 260,
+    isFavorite
+  } = props;
 
   const divClass = cn('place-card__image-wrapper', {
     'cities__image-wrapper': !isFavorite,
@@ -19,9 +27,13 @@ function OfferCardPreviewImage(props: TOfferCardPreviewImage): React.ReactElemen
 
   return (
     <div className={divClass}>
-      <a href='#'>
-        <img alt={imageAlt} className='place-card__image' height={imageHeight} src={imageSrc} width={imageWidth} />
-      </a>
+      <img
+        alt={imageAlt}
+        className='place-card__image'
+        height={imageHeight}
+        src={imageSrc}
+        width={imageWidth}
+      />
     </div>
   );
 }
