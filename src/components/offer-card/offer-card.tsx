@@ -1,35 +1,28 @@
 import React from 'react';
 
-import OfferCardContent, { TOfferTypeContent } from './offer-card-content';
-import OfferCardImage, { TOfferCardImage } from './offer-card-image';
+import { OfferCardContent, TOfferCardContent } from './offer-card-content';
+import OfferCardGallery, { TOfferCardImage } from './offer-card-gallery';
+import OfferCardMap from './offer-card-map';
+import { TOfferCardPreviewImage } from '../offer-card-preview';
+import { City } from '../../enums';
 
-type TOfferCard = {
-  isPremium?: boolean;
-} & TOfferTypeContent &
-  TOfferCardImage;
+export type TOfferCard = {
+  id: number;
+  images: TOfferCardImage[];
+  isInBookmarks?: boolean;
+  previewImage: TOfferCardPreviewImage;
+  city: City;
+} & TOfferCardContent;
 
-function OfferCard(props: TOfferCard): React.ReactElement {
+function OfferCard(data: TOfferCard): React.ReactElement {
+  const { images } = data;
+
   return (
-    <article className='cities__card place-card'>
-      {props.isPremium && (
-        <div className='place-card__mark'>
-          <span>Premium</span>
-        </div>
-      )}
-      <OfferCardImage
-        imageSrc={props.imageSrc}
-        imageAlt={props.imageAlt}
-        imageHeight={props.imageHeight}
-        imageWidth={props.imageWidth}
-      />
-      <OfferCardContent
-        text={props.text}
-        price={props.price}
-        type={props.type}
-        rating={props.rating}
-        isInBookmarks={props.isInBookmarks}
-      />
-    </article>
+    <section className='offer'>
+      <OfferCardGallery images={images} />
+      <OfferCardContent {...data} />
+      <OfferCardMap />
+    </section>
   );
 }
 

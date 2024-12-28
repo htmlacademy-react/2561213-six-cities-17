@@ -13,6 +13,6 @@
   "jsxBracketSameLine": false,
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "css",
-  "quoteProps": "as-needed",
+  "quoteProps": "preserve",
   "printWidth": 80
 }
