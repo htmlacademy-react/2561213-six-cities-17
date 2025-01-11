@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { Header } from '../../layouts';
 import { OfferList, OfferCityTabPanel } from '../../components';
 import { offers } from '../../mocks';
-import { City } from '../../enums';
+import { CITIES, City } from '../../enums';
+import { OfferMap } from '../../components/offer-map';
 
 export type TMainPage = {
   placesAmount: number;
@@ -35,19 +36,30 @@ function MainPage(props: TMainPage): React.ReactElement {
 
   const cities = Object.values(City);
 
+  const city = CITIES.Amsterdam;
+  const points = offers
+    .filter((offer) => offer.city === city)
+    .map((offer) => offer.point);
+
   return (
     <div className='page page--gray page--main'>
       <Header hasData={props.hasData} />
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
-        <OfferCityTabPanel currentCity={currentCity} cities={cities} onCityChange={handleCityChange} />
+        <OfferCityTabPanel
+          currentCity={currentCity}
+          cities={cities}
+          onCityChange={handleCityChange}
+        />
         <div className='cities'>
           {props.hasData ? (
             <div className='cities__places-container container'>
               <section className='cities__places places'>
                 <h2 className='visually-hidden'>Places</h2>
-                <b className='places__found'>{props.placesAmount} places to stay in Amsterdam</b>
+                <b className='places__found'>
+                  {props.placesAmount} places to stay in Amsterdam
+                </b>
                 <form className='places__sorting' action='#' method='get'>
                   <span className='places__sorting-caption'>Sort by</span>
                   <span className='places__sorting-type' tabIndex={0}>
@@ -57,7 +69,10 @@ function MainPage(props: TMainPage): React.ReactElement {
                     </svg>
                   </span>
                   <ul className='places__options places__options--custom places__options--opened'>
-                    <li className='places__option places__option--active' tabIndex={0}>
+                    <li
+                      className='places__option places__option--active'
+                      tabIndex={0}
+                    >
                       Popular
                     </li>
                     <li className='places__option' tabIndex={0}>
@@ -77,7 +92,13 @@ function MainPage(props: TMainPage): React.ReactElement {
                 </div>
               </section>
               <div className='cities__right-section'>
-                <section className='cities__map map'></section>
+                <section className='cities__map map'>
+                  <OfferMap
+                    city={city}
+                    points={points}
+                    selectedPoint={undefined}
+                  />
+                </section>
               </div>
             </div>
           ) : (

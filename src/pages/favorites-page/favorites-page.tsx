@@ -13,7 +13,7 @@ type TGroupedOffers = Record<string, TOfferCard[]>;
 const groupOffersByCity = (offersArray: TOfferCard[]): TGroupedOffers =>
   offersArray.reduce((acc, offer) => {
     if (offer.isInBookmarks) {
-      const city = offer.city;
+      const city = offer.city.title;
       if (!acc[city]) {
         acc[city] = [];
       }
@@ -89,7 +89,13 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
       </main>
       <footer className='footer container'>
         <a className='footer__logo-link' href='markup/main.html'>
-          <img className='footer__logo' src='markup/img/logo.svg' alt='6 cities logo' width='64' height='33' />
+          <img
+            className='footer__logo'
+            src='markup/img/logo.svg'
+            alt='6 cities logo'
+            width='64'
+            height='33'
+          />
         </a>
       </footer>
     </div>

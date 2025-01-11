@@ -1,5 +1,4 @@
-import { TOfferCardImage } from '../components/offer-card';
-
+import { TOfferCardImage } from '../components';
 
 /**
  * Mocked offer images

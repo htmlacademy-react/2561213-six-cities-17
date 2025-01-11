@@ -1,5 +1,4 @@
-import { TOfferCardContentReview } from '../components/offer-card';
-
+import { TOfferCardContentReview } from '../components';
 
 /**
  * Mocked offer reviews
@@ -12,7 +11,8 @@ export const offerReviews: TOfferCardContentReview[] = [
       avatar: 'markup/img/avatar-max.jpg'
     },
     rating: 4.5,
-    text: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. ' +
+    text:
+      'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. ' +
       'The building is green and from the 18th century.',
     date: '2019-04-24'
   },
