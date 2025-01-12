@@ -64,7 +64,7 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
                       {cityOffers.map((offer) => (
                         <OfferCardPreview
                           key={offer.id}
-                          id={offer.id}
+                          offerId={offer.id}
                           price={offer.price}
                           stars={offer.stars}
                           name={offer.name}

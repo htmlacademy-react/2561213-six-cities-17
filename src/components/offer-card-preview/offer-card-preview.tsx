@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import { Link } from 'react-router-dom'; // Импортируем Link
+import { Link } from 'react-router-dom';
 
 import OfferCardPreviewContent, {
   TOfferCardPreviewContent
@@ -10,7 +10,7 @@ import OfferCardPreviewImage, {
 } from './offer-card-preview-image';
 
 export type TOfferCardPreview = {
-  id: number;
+  offerId: number;
   isPremium?: boolean;
   isFavorite?: boolean;
 } & TOfferCardPreviewContent &
@@ -24,13 +24,13 @@ function OfferCardPreview(props: TOfferCardPreview): React.ReactElement {
   const handleMouseEnter = () => {
     setIsActive(true);
     // eslint-disable-next-line no-console
-    console.log(`Active card ID: ${props.id}`);
+    console.log(`Active card ID: ${props.offerId}`);
   };
 
   const handleMouseLeave = () => {
     setIsActive(false);
     // eslint-disable-next-line no-console
-    console.log(`Card ID ${props.id} is no longer active`);
+    console.log(`Card ID ${props.offerId} is no longer active`);
   };
 
   const cardClass = cn('place-card', {
@@ -60,7 +60,7 @@ function OfferCardPreview(props: TOfferCardPreview): React.ReactElement {
         </div>
       )}
       <Link
-        to={`/offer/${props.id}`}
+        to={`/offer/${props.offerId}`}
         onClick={() => window.scrollTo(0, 0)}
         style={{ textDecoration: 'none', color: 'inherit' }}
       >

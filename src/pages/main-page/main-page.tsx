@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { Header } from '../../layouts';
 import { OfferList, OfferCityTabPanel } from '../../components';
 import { offers } from '../../mocks';
-import { CITIES, City } from '../../enums';
-import { OfferMap } from '../../components/offer-map';
+import { CITIES } from '../../enums';
+import { OfferMap, TCity, TPoint } from '../../components/offer-map';
 
 export type TMainPage = {
-  placesAmount: number;
   hasData?: boolean;
 };
 
@@ -28,18 +27,29 @@ function EmptyMainPage() {
 }
 
 function MainPage(props: TMainPage): React.ReactElement {
-  const [currentCity, setCurrentCity] = useState<City>(City.Amsterdam);
+  const [currentCity, setCurrentCity] = useState<TCity>(CITIES.Amsterdam);
+  const [selectedPoint, setSelectedPoint] = useState<TPoint | undefined>(
+    undefined
+  );
 
-  const handleCityChange = (city: City) => {
+  const handleCityChange = (city: TCity) => {
     setCurrentCity(city);
   };
 
-  const cities = Object.values(City);
+  const handleOfferCardHover = (offerId: number) => {
+    const currentOffer = offers.find((offer) => offer.id === offerId);
+    if (currentOffer) {
+      setSelectedPoint(currentOffer.point);
+    }
+  };
 
-  const city = CITIES.Amsterdam;
+  const cities = Object.values(CITIES);
+
   const points = offers
-    .filter((offer) => offer.city === city)
+    .filter((offer) => offer.city === currentCity)
     .map((offer) => offer.point);
+
+  const currentOffers = offers.filter((offer) => offer.city === currentCity);
 
   return (
     <div className='page page--gray page--main'>
@@ -58,7 +68,7 @@ function MainPage(props: TMainPage): React.ReactElement {
               <section className='cities__places places'>
                 <h2 className='visually-hidden'>Places</h2>
                 <b className='places__found'>
-                  {props.placesAmount} places to stay in Amsterdam
+                  {currentOffers.length} places to stay in {currentCity.title}
                 </b>
                 <form className='places__sorting' action='#' method='get'>
                   <span className='places__sorting-caption'>Sort by</span>
@@ -88,15 +98,18 @@ function MainPage(props: TMainPage): React.ReactElement {
                 </form>
 
                 <div className='cities__places-list places__list tabs__content'>
-                  <OfferList offers={offers} />
+                  <OfferList
+                    offers={currentOffers}
+                    onOfferCardHover={handleOfferCardHover}
+                  />
                 </div>
               </section>
               <div className='cities__right-section'>
                 <section className='cities__map map'>
                   <OfferMap
-                    city={city}
+                    city={currentCity}
                     points={points}
-                    selectedPoint={undefined}
+                    selectedPoint={selectedPoint}
                   />
                 </section>
               </div>

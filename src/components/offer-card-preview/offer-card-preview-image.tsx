@@ -7,17 +7,20 @@ export type TOfferCardPreviewImage = {
   imageHeight?: number;
   imageWidth?: number;
   isFavorite?: boolean;
+  onOfferCardHover?: (offerId: number) => void;
 };
 
 function OfferCardPreviewImage(
-  props: TOfferCardPreviewImage
+  props: TOfferCardPreviewImage & { offerId: number }
 ): React.ReactElement {
   const {
+    offerId,
     imageAlt = 'Place image',
     imageSrc,
     imageHeight = 200,
     imageWidth = 260,
-    isFavorite
+    isFavorite,
+    onOfferCardHover
   } = props;
 
   const divClass = cn('place-card__image-wrapper', {
@@ -33,6 +36,7 @@ function OfferCardPreviewImage(
         height={imageHeight}
         src={imageSrc}
         width={imageWidth}
+        onMouseOver={() => onOfferCardHover?.(offerId)}
       />
     </div>
   );
