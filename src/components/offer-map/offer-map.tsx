@@ -32,7 +32,7 @@ const defaultCustomIcon = new Icon({
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: '../../../public/img/main-pin.svg',
+  iconUrl: '../../../public/img/pin-active.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
