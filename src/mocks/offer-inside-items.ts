@@ -1,5 +1,4 @@
-import { TOfferCardContentInsideItem } from '../components/offer-card';
-
+import { TOfferCardContentInsideItem } from '../components';
 
 /**
  * Mocked offer inside features

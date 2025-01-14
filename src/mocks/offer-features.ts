@@ -1,5 +1,4 @@
-import { TOfferCardContentFeature } from '../components/offer-card';
-
+import { TOfferCardContentFeature } from '../components';
 
 /**
  * Mocked offer features
@@ -9,5 +8,5 @@ export const offerFeatures: TOfferCardContentFeature[] = [
   { id: 2, text: '3 Bedrooms', className: 'offer__feature--bedrooms' },
   { id: 3, text: 'Max 4 adults', className: 'offer__feature--adults' },
   { id: 4, text: '2 Bathrooms', className: 'offer__feature--bathrooms' },
-  { id: 5, text: 'Family-friendly', className: 'offer__feature--family' },
+  { id: 5, text: 'Family-friendly', className: 'offer__feature--family' }
 ];
