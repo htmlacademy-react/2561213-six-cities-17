@@ -5,6 +5,9 @@ import { OfferList, OfferCityTabPanel } from '../../components';
 import { offers } from '../../mocks';
 import { CITIES } from '../../enums';
 import { OfferMap, TCity, TPoint } from '../../components/offer-map';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeCity, changeOffers } from '../../store/action';
+import { handleOfferChange } from '../../helper';
 
 export type TMainPage = {
   hasData?: boolean;
@@ -27,13 +30,18 @@ function EmptyMainPage() {
 }
 
 function MainPage(props: TMainPage): React.ReactElement {
-  const [currentCity, setCurrentCity] = useState<TCity>(CITIES.Amsterdam);
+  const currentCity = useAppSelector((state) => state.city);
   const [selectedPoint, setSelectedPoint] = useState<TPoint | undefined>(
     undefined
   );
 
+  const dispatch = useAppDispatch();
+
   const handleCityChange = (city: TCity) => {
-    setCurrentCity(city);
+    dispatch(changeCity({ city }));
+
+    const currentOffers = handleOfferChange(city);
+    dispatch(changeOffers({ offers: currentOffers }));
   };
 
   const handleOfferCardHover = (offerId: number) => {
@@ -49,7 +57,7 @@ function MainPage(props: TMainPage): React.ReactElement {
     .filter((offer) => offer.city === currentCity)
     .map((offer) => offer.point);
 
-  const currentOffers = offers.filter((offer) => offer.city === currentCity);
+  const currentOffers = useAppSelector((state) => state.offers);
 
   return (
     <div className='page page--gray page--main'>
