@@ -8,6 +8,7 @@ export type TOfferCardPreviewImage = {
   imageWidth?: number;
   isFavorite?: boolean;
   onOfferCardHover?: (offerId: number) => void;
+  onOfferCardLeave?: () => void;
 };
 
 function OfferCardPreviewImage(
@@ -20,7 +21,8 @@ function OfferCardPreviewImage(
     imageHeight = 200,
     imageWidth = 260,
     isFavorite,
-    onOfferCardHover
+    onOfferCardHover,
+    onOfferCardLeave
   } = props;
 
   const divClass = cn('place-card__image-wrapper', {
@@ -37,6 +39,7 @@ function OfferCardPreviewImage(
         src={imageSrc}
         width={imageWidth}
         onMouseOver={() => onOfferCardHover?.(offerId)}
+        onMouseLeave={onOfferCardLeave}
       />
     </div>
   );

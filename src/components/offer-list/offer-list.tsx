@@ -6,6 +6,7 @@ import { TOfferCardPreviewImage } from '../offer-card-preview';
 export type TOfferList = {
   offers: TOfferListItem[];
   onOfferCardHover?: (offerId: number) => void;
+  onOfferCardLeave?: () => void;
 };
 
 export type TOfferListItem = {
@@ -21,7 +22,8 @@ export type TOfferListItem = {
 
 function OfferList({
   offers,
-  onOfferCardHover
+  onOfferCardHover,
+  onOfferCardLeave
 }: TOfferList): React.ReactElement {
   return (
     <div className='cities__places-list places__list tabs__content'>
@@ -38,6 +40,7 @@ function OfferList({
           isPremium={offer.isPremium}
           isInBookmarks={offer.isInBookmarks}
           onOfferCardHover={onOfferCardHover}
+          onOfferCardLeave={onOfferCardLeave}
         />
       ))}
     </div>
