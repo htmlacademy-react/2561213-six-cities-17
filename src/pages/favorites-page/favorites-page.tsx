@@ -1,26 +1,12 @@
 import React from 'react';
 
 import { Header } from '../../layouts';
-import { offers } from '../../mocks';
-import { TOfferCard, OfferCardPreview } from '../../components';
+import { OfferCardPreview } from '../../components';
+import { TOffers } from '../../types';
 
 type TFavoritesPage = {
   hasData?: boolean;
 };
-
-type TGroupedOffers = Record<string, TOfferCard[]>;
-
-const groupOffersByCity = (offersArray: TOfferCard[]): TGroupedOffers =>
-  offersArray.reduce((acc, offer) => {
-    if (offer.isInBookmarks) {
-      const city = offer.city.title;
-      if (!acc[city]) {
-        acc[city] = [];
-      }
-      acc[city].push(offer);
-    }
-    return acc;
-  }, {} as TGroupedOffers);
 
 function EmptyFavoritesPage() {
   return (
@@ -39,7 +25,7 @@ function EmptyFavoritesPage() {
 }
 
 function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
-  const groupedOffers = groupOffersByCity(offers);
+  const groupedOffers: TOffers = [];
 
   return (
     <div className='page'>
@@ -51,7 +37,7 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
             <section className='favorites'>
               <h1 className='favorites__title'>Saved listing</h1>
               <ul className='favorites__list'>
-                {Object.entries(groupedOffers).map(([city, cityOffers]) => (
+                {Object.entries(groupedOffers).map(([city]) => (
                   <li className='favorites__locations-items' key={city}>
                     <div className='favorites__locations locations locations--current'>
                       <div className='locations__item'>
@@ -61,21 +47,8 @@ function FavoritesPage({ hasData }: TFavoritesPage): React.ReactElement {
                       </div>
                     </div>
                     <div className='favorites__places'>
-                      {cityOffers.map((offer) => (
-                        <OfferCardPreview
-                          key={offer.id}
-                          offerId={offer.id}
-                          price={offer.price}
-                          stars={offer.stars}
-                          name={offer.name}
-                          roomType={offer.roomType}
-                          imageSrc={offer.previewImage.imageSrc}
-                          imageAlt={offer.previewImage.imageAlt}
-                          imageHeight={110}
-                          imageWidth={150}
-                          isFavorite
-                          isInBookmarks={offer.isInBookmarks}
-                        />
+                      {groupedOffers.map((offer) => (
+                        <OfferCardPreview key={offer.id} offer={offer} />
                       ))}
                     </div>
                   </li>

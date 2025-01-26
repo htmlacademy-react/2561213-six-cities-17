@@ -3,13 +3,7 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import React, { useEffect, useRef } from 'react';
 
 import { useMap } from '../../hooks';
-
-export type TCity = {
-  title: string;
-  lat: number;
-  lng: number;
-  zoom: number;
-};
+import { TCity } from '../../types';
 
 export type TPoint = {
   title: string;
@@ -39,7 +33,10 @@ const currentCustomIcon = new Icon({
 
 function OfferMap(props: TMap): React.ReactElement {
   const { city, points, selectedPoint } = props;
+  console.log(points);
+  console.log(selectedPoint);
 
+  // TODO Оказывается наименование это не уникальное значение, надо переделать на ID
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -52,6 +49,11 @@ function OfferMap(props: TMap): React.ReactElement {
           lng: point.lng
         });
 
+        console.log(
+          selectedPoint !== undefined && point.title === selectedPoint.title
+            ? point.title
+            : ''
+        );
         marker
           .setIcon(
             selectedPoint !== undefined && point.title === selectedPoint.title

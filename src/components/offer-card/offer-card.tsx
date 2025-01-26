@@ -3,7 +3,8 @@ import React from 'react';
 import { OfferCardContent, TOfferCardContent } from './offer-card-content';
 import OfferCardGallery, { TOfferCardImage } from './offer-card-gallery';
 import { TOfferCardPreviewImage } from '../offer-card-preview';
-import { OfferMap, TCity, TPoint } from '../offer-map';
+import { OfferMap, TPoint } from '../offer-map';
+import { TCity } from '../../types';
 
 export type TOfferCard = {
   id: number;
