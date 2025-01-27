@@ -48,6 +48,7 @@ function MainPage(props: TMainPage): React.ReactElement {
 
     if (currentOffer) {
       const point: TPoint = {
+        id: currentOffer.id,
         lat: currentOffer.location.latitude,
         lng: currentOffer.location.longitude,
         title: currentOffer.title
@@ -66,12 +67,11 @@ function MainPage(props: TMainPage): React.ReactElement {
   const points = offers
     .filter((offer) => offer.city.name === currentCity.name)
     .map((offer) => ({
+      id: offer.id,
       title: offer.title,
       lat: offer.location.latitude,
       lng: offer.location.longitude
     }));
-
-  console.log(currentOffers);
 
   return (
     <div className='page page--gray page--main'>

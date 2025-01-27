@@ -8,3 +8,7 @@ export const changeOffers = createAction<{ offers: TOffers }>('changeOffers');
 export const setSortType = createAction<SortType>('sort/setSortType');
 
 export const loadOffers = createAction<TOffers>('data/loadOffers');
+
+export const setOffersDataLoadingStatus = createAction<boolean>(
+  'data/setOffersDataLoadingStatus'
+);

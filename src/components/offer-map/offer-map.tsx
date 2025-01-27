@@ -6,6 +6,7 @@ import { useMap } from '../../hooks';
 import { TCity } from '../../types';
 
 export type TPoint = {
+  id: string;
   title: string;
   lat: number;
   lng: number;
@@ -20,23 +21,20 @@ export type TMap = {
 export type TPoints = TPoint[];
 
 const defaultCustomIcon = new Icon({
-  iconUrl: '../../../public/img/pin.svg',
+  iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: '../../../public/img/pin-active.svg',
+  iconUrl: 'img/pin-active.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 function OfferMap(props: TMap): React.ReactElement {
   const { city, points, selectedPoint } = props;
-  console.log(points);
-  console.log(selectedPoint);
 
-  // TODO Оказывается наименование это не уникальное значение, надо переделать на ID
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -49,14 +47,9 @@ function OfferMap(props: TMap): React.ReactElement {
           lng: point.lng
         });
 
-        console.log(
-          selectedPoint !== undefined && point.title === selectedPoint.title
-            ? point.title
-            : ''
-        );
         marker
           .setIcon(
-            selectedPoint !== undefined && point.title === selectedPoint.title
+            selectedPoint !== undefined && point.id === selectedPoint.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

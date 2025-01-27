@@ -1,6 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { changeCity, changeOffers, loadOffers, setSortType } from './action';
+import {
+  changeCity,
+  changeOffers,
+  loadOffers,
+  setOffersDataLoadingStatus,
+  setSortType
+} from './action';
 import { CITIES, City, SortType } from '../enums';
 import { TOffers, TCity } from '../types';
 
@@ -8,12 +14,14 @@ type TInitialState = {
   city: TCity;
   offers: TOffers;
   sortType: SortType;
+  isOffersDataLoading: boolean;
 };
 
 const initialState: TInitialState = {
   city: CITIES[City.Paris],
   offers: [],
-  sortType: SortType.Popular
+  sortType: SortType.Popular,
+  isOffersDataLoading: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -33,6 +41,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });
 
