@@ -1,4 +1,3 @@
-import { TOfferCard } from './components';
 import { SortType } from './enums';
 import { TCity, TOffers } from './types';
 
@@ -6,9 +5,9 @@ export const selectOffersByCity = (city: TCity, offers: TOffers) =>
   offers.filter((offer) => offer.city.name === city.name);
 
 export const getSortedOffers = (
-  currentOffers: TOfferCard[],
+  currentOffers: TOffers,
   sortType: SortType
-): TOfferCard[] => {
+): TOffers => {
   const sortedOffers = [...currentOffers];
 
   switch (sortType) {

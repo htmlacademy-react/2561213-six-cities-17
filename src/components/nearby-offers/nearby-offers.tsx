@@ -1,10 +1,10 @@
 import React from 'react';
 import { OfferList } from '../offer-list';
-import { TOfferCard } from '../offer-card';
+import { TOffers } from '../../types';
 
 export type TNearbyOffers = {
-  offers: TOfferCard[];
-  onOfferCardHover: (offerId: number) => void;
+  offers: TOffers;
+  onOfferCardHover: (offerId: string) => void;
 };
 
 function NearbyOffers(props: TNearbyOffers): React.ReactElement {

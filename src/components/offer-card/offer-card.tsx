@@ -2,7 +2,6 @@ import React from 'react';
 
 import { OfferCardContent, TOfferCardContent } from './offer-card-content';
 import OfferCardGallery, { TOfferCardImage } from './offer-card-gallery';
-import { TOfferCardPreviewImage } from '../offer-card-preview';
 import { OfferMap, TPoint } from '../offer-map';
 import { TCity } from '../../types';
 
@@ -10,7 +9,6 @@ export type TOfferCard = {
   id: number;
   images: TOfferCardImage[];
   isInBookmarks?: boolean;
-  previewImage: TOfferCardPreviewImage;
   city: TCity;
   point: TPoint;
   points?: TPoint[];
