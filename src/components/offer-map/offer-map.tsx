@@ -3,15 +3,10 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import React, { useEffect, useRef } from 'react';
 
 import { useMap } from '../../hooks';
-
-export type TCity = {
-  title: string;
-  lat: number;
-  lng: number;
-  zoom: number;
-};
+import { TCity } from '../../types';
 
 export type TPoint = {
+  id: string;
   title: string;
   lat: number;
   lng: number;
@@ -26,13 +21,13 @@ export type TMap = {
 export type TPoints = TPoint[];
 
 const defaultCustomIcon = new Icon({
-  iconUrl: '../../../public/img/pin.svg',
+  iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: '../../../public/img/pin-active.svg',
+  iconUrl: 'img/pin-active.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
@@ -54,7 +49,7 @@ function OfferMap(props: TMap): React.ReactElement {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.title === selectedPoint.title
+            selectedPoint !== undefined && point.id === selectedPoint.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

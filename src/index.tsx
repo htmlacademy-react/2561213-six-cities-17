@@ -4,10 +4,16 @@ import { Provider } from 'react-redux';
 
 import App from './components/app';
 import { store } from './store';
+import { fetchOffersAction } from './store/api-action';
+import { changeCity } from './store/action';
+import { CITIES, City } from './enums';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(fetchOffersAction());
+changeCity({ city: CITIES[City.Paris] });
 
 root.render(
   <React.StrictMode>

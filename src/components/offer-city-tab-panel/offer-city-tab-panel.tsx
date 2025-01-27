@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import { TCity } from '../offer-map';
+
+import { TCity } from '../../types';
 
 export type TOfferCityTabPanel = {
   currentCity: TCity;
@@ -27,13 +28,13 @@ function OfferCityTabPanel(props: TOfferCityTabPanel): React.ReactElement {
             });
 
             return (
-              <li className='locations__item' key={city.title}>
+              <li className='locations__item' key={city.name}>
                 <a
                   className={btnClass}
                   href='#'
                   onClick={handleCityClick(city)}
                 >
-                  <span>{city.title}</span>
+                  <span>{city.name}</span>
                 </a>
               </li>
             );

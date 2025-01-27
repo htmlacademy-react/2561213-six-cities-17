@@ -1,3 +1,4 @@
+export * from './api-route';
 export * from './autorization-status';
 export * from './city';
 export * from './hotel-rating';
